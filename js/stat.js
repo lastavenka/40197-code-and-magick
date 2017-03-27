@@ -16,11 +16,11 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var k = 0; k < times.length; k++) {
     var time = times[k];
-      
+
     if (time > max) {
-        max = time;
-      }
-  };
+      max = time;
+    }
+  }
 
   var histogramHeight = 150;
   var step = histogramHeight / (max - 0);
