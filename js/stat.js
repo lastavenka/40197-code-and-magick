@@ -28,11 +28,16 @@ window.renderStatistics = function (ctx, names, times) {
   var indent = barWidth + 50;
   var initialX = 140;
   var initialY = 260;
+  var verticalIndent = 20;
 
-  ctx.textBaseline = 'botttom';
+  ctx.textBaseline = 'bottom';
 
   for (var i = 0; i < times.length; i++) {
-    ctx.fillText(names[i], initialX + indent * i, initialY);
+
+    var barX = initialX + indent * i;
+    var barY = initialY - verticalIndent - times[i] * step;
+
+    ctx.fillText(names[i], barX, initialY);
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
@@ -40,8 +45,8 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random() + ')';
     }
 
-    ctx.fillRect(initialX + indent * i, initialY - 20 - times[i] * step, barWidth, times[i] * step);
+    ctx.fillRect(barX, barY, barWidth, times[i] * step);
     ctx.fillStyle = '#000';
-    ctx.fillText(Math.round(times[i]), initialX + indent * i, initialY - 30 - times[i] * step);
+    ctx.fillText(Math.round(times[i]), barX, barY);
   }
 };
