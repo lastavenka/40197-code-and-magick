@@ -7,7 +7,6 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var wizardsNumber = 4;
 var userDialog = document.querySelector('.setup');
 
-
 // Показ блока .setup
 userDialog.classList.remove('hidden');
 
@@ -42,15 +41,15 @@ var renderWizard = function (wizard) {
 };
 
 // Заполнение блока DOM-элементами на основе массива JS-объектов
-var fragment = document.createDocumentFragment();
-function createSimilarList(arr, container) {
-  for (var f = 0; f < arr.length; f++) {
-    fragment.appendChild(renderWizard(arr[f]));
+var createSimilarList = function (arr, renderFunction, container) {
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < arr.length; i++) {
+    fragment.appendChild(renderFunction(arr[i]));
   }
   container.appendChild(fragment);
-}
+};
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
-createSimilarList(getWizards(wizardsNumber), similarListElement);
+createSimilarList(getWizards(wizardsNumber), renderWizard, similarListElement);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
