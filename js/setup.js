@@ -98,17 +98,11 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-var setupSubmit = setup.querySelector('.setup-submit');
-setupSubmit.addEventListener('click', function () {
-  if (wizardName.validity.valid) {
-    closePopup();
-  }
-});
+var setupForm = setup.querySelector('.setup-wizard-form');
 
-setupSubmit.addEventListener('keydown', function (evt) {
-  if (wizardName.validity.valid && evt.keyCode === 13) {
-    closePopup();
-  }
+setupForm.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  closePopup();
 });
 
 var wizardCoat = setup.querySelector('.wizard-coat');
